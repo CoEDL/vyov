@@ -1,0 +1,13 @@
+---
+title: "VYOV: Visualise your own vowels <br><h2>A short introduction to Praat for complete beginners</h2>"
+date: 'Generated `r format(Sys.time(), "%H:%M %d %B, %Y")`'
+author: "Nay San <nay.san@anu.edu.au>"
+output:
+    tufte::tufte_html:
+        toc: true
+        number_sections: true
+---
+
+# About
+
+This is a start.
