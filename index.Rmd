@@ -11,3 +11,7 @@ output:
 # About
 
 This is a start.
+
+<script type="text/javascript">
+    document.title = 'VYOV: Visualise your own vowels'
+</script>
