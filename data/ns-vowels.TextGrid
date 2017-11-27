@@ -1,0 +1,108 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 6.488826235223529 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "word" 
+        xmin = 0 
+        xmax = 6.488826235223529 
+        intervals: size = 11 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.13175266029564658 
+            text = "" 
+        intervals [2]:
+            xmin = 0.13175266029564658 
+            xmax = 1.0179582738021689 
+            text = "heed" 
+        intervals [3]:
+            xmin = 1.0179582738021689 
+            xmax = 1.4282386504255586 
+            text = "" 
+        intervals [4]:
+            xmin = 1.4282386504255586 
+            xmax = 2.352737099083597 
+            text = "hair'd" 
+        intervals [5]:
+            xmin = 2.352737099083597 
+            xmax = 2.6536093752740832 
+            text = "" 
+        intervals [6]:
+            xmin = 2.6536093752740832 
+            xmax = 3.550755798823895 
+            text = "hard" 
+        intervals [7]:
+            xmin = 3.550755798823895 
+            xmax = 3.9336841503390594 
+            text = "" 
+        intervals [8]:
+            xmin = 3.9336841503390594 
+            xmax = 4.759715308607484 
+            text = "horde" 
+        intervals [9]:
+            xmin = 4.759715308607484 
+            xmax = 5.044176369733035 
+            text = "" 
+        intervals [10]:
+            xmin = 5.044176369733035 
+            xmax = 5.864737122979815 
+            text = "who'd" 
+        intervals [11]:
+            xmin = 5.864737122979815 
+            xmax = 6.488826235223529 
+            text = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "vowel" 
+        xmin = 0 
+        xmax = 6.488826235223529 
+        intervals: size = 11 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.4271476971714596 
+            text = "" 
+        intervals [2]:
+            xmin = 0.4271476971714596 
+            xmax = 0.749840440935632 
+            text = "i" 
+        intervals [3]:
+            xmin = 0.749840440935632 
+            xmax = 1.6537732986315559 
+            text = "" 
+        intervals [4]:
+            xmin = 1.6537732986315559 
+            xmax = 2.033186119947978 
+            text = "e" 
+        intervals [5]:
+            xmin = 2.033186119947978 
+            xmax = 2.841402679866292 
+            text = "" 
+        intervals [6]:
+            xmin = 2.841402679866292 
+            xmax = 3.2001605689868526 
+            text = "a" 
+        intervals [7]:
+            xmin = 3.2001605689868526 
+            xmax = 4.091616706997613 
+            text = "" 
+        intervals [8]:
+            xmin = 4.091616706997613 
+            xmax = 4.484918006353334 
+            text = "o" 
+        intervals [9]:
+            xmin = 4.484918006353334 
+            xmax = 5.203941914858534 
+            text = "" 
+        intervals [10]:
+            xmin = 5.203941914858534 
+            xmax = 5.45698766525746 
+            text = "u" 
+        intervals [11]:
+            xmin = 5.45698766525746 
+            xmax = 6.488826235223529 
+            text = "" 
