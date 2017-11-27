@@ -48,7 +48,7 @@ side_note <- function(note) {
 
 <p style="text-align:right;">
 <!-- Retrieve and format date of last commit to repository //-->
-Last updated `r git2r::init(".") %>% git2r::commits() %>% .[[1]] %>% attr('author') %>% attr('when') %>% as("POSIXct") %>% format('%d %B, %Y')`
+Last updated `r git2r::init("/srv/shiny-server") %>% git2r::commits() %>% .[[1]] %>% attr('author') %>% attr('when') %>% as("POSIXct") %>% format('%d %B, %Y')`
 </p>
 
 # About
