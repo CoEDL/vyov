@@ -1,4 +1,8 @@
-This repository holds the source code for a [half-day Praat workshop](https://web.archive.org/web/20171123001654/http://www.dynamicsoflanguage.edu.au/education-and-outreach/train-with-us/summer-school-2017/program/workshop-praat/) presented at the 2017 Summer School held by the Centre of Excellence for the Dynamics of Language.
+This repository holds the source code for a [half-day Praat workshop](https://web.archive.org/web/20171123001654/http://www.dynamicsoflanguage.edu.au/education-and-outreach/train-with-us/summer-school-2017/program/workshop-praat/) presented at the 2017 Summer School held by the [ARC Centre of Excellence for the Dynamics of Language](http://www.dynamicsoflanguage.edu.au/).
+
+<div style="text-align:center">
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/au/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/2.5/au/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/au/">Creative Commons Attribution-ShareAlike 2.5 Australia License</a>.
+</div>
 
 # Visualise your own vowels
 
@@ -17,3 +21,6 @@ No practical experience with acoustic phonetics is assumed, though some basic fa
 # Building source code
 
 The handout material for the workshop is written as an RMarkdown file (`index.rmd`), which is compiled to html (`index.html`) using RStudio. Since the style being used is the [Tufte CSS theme](http://rmarkdown.rstudio.com/tufte_handout_format.html), you'll also need to do `install.packages('tufte')` to build the html.
+
+# Deploying Shiny apps
+
