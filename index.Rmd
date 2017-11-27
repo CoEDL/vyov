@@ -46,11 +46,6 @@ side_note <- function(note) {
 }
 ```
 
-<p style="text-align:right;">
-<!-- Retrieve and format date of last commit to repository //-->
-Last updated `r git2r::init("/srv/shiny-server") %>% git2r::commits() %>% .[[1]] %>% attr('author') %>% attr('when') %>% as("POSIXct") %>% format('%d %B, %Y')`
-</p>
-
 # About
 
 This workshop is designed for people with little experience in using Praat—a cross-platform, open-source phonetics program which assists in the recording, annotation, and analysis of speech sounds. Through the completion of short exercises, participants will be guided through a simple phonetics project from the recording stage to the report-writing stage.
