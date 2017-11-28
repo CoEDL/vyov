@@ -178,27 +178,64 @@ We see this in the spectrogram as the dark band at the bottom of Slice B, and th
     - Cmd + 1: Add interval on tier 1
     - Cmd + A: Show all
     
+<a class="no-underline" target="_blank" href="http://recordit.co/ea8cT2yVce">`r margin_note("Click the animated image to view the video which you can play/pause to follow it at your own pace.")`
 ![](media/annotation.gif)
+</a>
 
 ## Data extraction
 
-We're going to do this step twice. Once manually, and then once semi-automatically with Google Sheets.
+We're going to do this step twice. Once manually, and then once semi-automatically with Google Sheets.`r side_note("If you're really keen and are familiar with R, you can also do this step in R!")` By the end of this stage, however you do it, you should have a table as the one shown below. Go to the [plot interface](#section-plotting-your-vowels) to make an F1-F2 plot with these values.
+
+<figure style="width:500px">
+|Vowel  | F1_average| F2_average|
+|:------|----------:|----------:|
+|heed   |        313|       2332|
+|hard   |        737|       1073|
+|horde  |        367|        766|
+|who'd  |        306|       1249|
+|hair'd |        397|       1913|
+</figure>
 
 ### Manually from the Praat Editor window
 
 1. If your formant contours are turned off, click the `Formant` menu then `Show formants`
-2. Select a vowel interval you have previously annotated, then click the `Formant` menu and then `Get first formant`. The `Praat Info` window will then appear with the mean first formant of within interval, note the value down somewhere (in a TextEditor, or on a piece of paper).
+2. Select a vowel interval you have previously annotated, then click the `Formant` menu and then `Get first formant`. The `Praat Info` window will then appear with the mean first formant of within interval, note the value down somewhere (in a text editor, or on a piece of paper).
 
+<a class="no-underline" target="_blank" href="http://recordit.co/nPzmMgZeJ5">`r margin_note("Click the animated image to view the video which you can play/pause to follow it at your own pace.")`
 ![](media/get-first-formant.gif)
+</a>
 
-### Extracting data using Google Sheets (if we have time)
+### Extracting data using Google Sheets
 
-...To finish
-1. Export TextGrid data as `annotations.csv` and Formant data as `formants.csv`
+1. Export TextGrid data as `annotations.csv` and Formant data as `formants.csv`.
 
+<a class="no-underline" target="_blank" href="http://recordit.co/ybhGxsf99a">`r margin_note("Click the animated image to view the video which you can play/pause to follow it at your own pace.")`
 ![](media/export-csvs.gif)
+</a>
+
+2. Import `annotations.csv` and `formants.csv` into Google Sheets, ticking the option of `Replace current sheet` for the first one, and then `Inset new sheet(s)` for the second one.`r side_note("If you'd prefer to do these next steps in R, here's the code: [https://git.io/vbfQ2](https://git.io/vbfQ2).")`
+
+<a class="no-underline" target="_blank" href="http://g.recordit.co/euy7g7MxHl.gif">`r margin_note("Click the animated image to view the video which you can play/pause to follow it at your own pace.")`
+![](media/import-google.gif)
+</a>
+
+3. From the `annotations` sheet, query the `formants` sheet using the `QUERY()` function:
+
+    ```
+    =QUERY(formants!A:C, "select avg(C) where A >= 0.42 and A <= 0.74 label avg(C) ''", 1)
+    ```
+
+![](media/google-query.png)
+
+4. Or, use the `&` to concatenate in values from the `annotations` sheet:
+
+    ```
+    =QUERY(formants!A:C, "select avg(C) where A >= " & A2 &" and A <= " & D2 & " label avg(C) ''", 1)
+    ```
 
 ## Plotting your vowels
+
+Enter in the mean F1 and F2 values you have extracted to plot them against the average F1 and F2 values of AusE male and female speakers.
 
 ```{r vowel plot app, echo=FALSE}
 inputPanel(
