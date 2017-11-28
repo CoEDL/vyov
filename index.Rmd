@@ -1,7 +1,7 @@
 ---
 runtime: shiny
-title: "VYOV: Visualise your own vowels <br><h1>A short introduction to Praat for complete beginners</h1>"
-author: "Nay San <p> <nay.san@anu.edu.au> </p>"
+title: "VYOV: Visualise your own vowels <br><h1>A short introduction to Praat for beginners</h1>"
+author: 'Nay San <p style="font-style:normal"><i class="fa fa-envelope-o" aria-hidden="true"></i> <nay.san@anu.edu.au><br><i class="fa fa-globe" aria-hidden="true"></i> <https://resunay.com></p>'
 output:
     tufte::tufte_html:
         toc: true
@@ -12,7 +12,6 @@ link-citations: yes
 ---
 
 ```{r setup, include=FALSE}
-library(git2r)
 library(knitr)
 library(tufte)
 library(dplyr)
@@ -54,20 +53,20 @@ In particular, we will 1) use Praat to record English vowels in /hVd/ environmen
 
 No practical experience with acoustic phonetics is assumed, though some basic familiarity of linguistics and speech production is preferred (e.g. completed a LING101 course). Participants should come with a laptop and with Praat downloaded and installed.`r margin_note("Download links: [MacOS](http://www.fon.hum.uva.nl/praat/download_mac.html), [Windows](http://www.fon.hum.uva.nl/praat/download_win.html), [Linux](http://www.fon.hum.uva.nl/praat/download_linux.html)")`
 
-## What is a phonetics analysis anyway?
+## What are phonetics analyses anyway?
 
-Praat assists us in carrying out phonetic analyses of speech sounds, but just what are phonetic analyses anyway? *Very* roughly stated, they are comparisons of acoustic measurements between two or more groups of speech sounds, and Praat helps us deal with the *practicalities* of grouping speech sounds of interest (e.g. vowels vs. consonants, interrogative vs. declarative sentences), and extracting acoustic measurements of interest (e.g. pitch, intensity, formant structure) for comparison.
+Praat assists us in carrying out phonetic analyses of speech sounds, but just what are phonetic analyses anyway? Roughly stated, they are comparisons of acoustic measurements between two or more groups of speech sounds, and Praat helps us deal with the practicalities of grouping speech sounds of interest (e.g. word-initial vs. word-medial vowels, interrogative vs. declarative sentences), and extracting acoustic measurements of interest (e.g. pitch, intensity, formant structure) for comparison.
 
-<figure style="width:1000px">
+<figure style="width:900px">
 <img src="media/kitchen-workflow.png">
 </figure>
 
 ## Goal: A short report of your vowels
 
-The goal of the workshop will be to produce a short report with 5 sections (described below). Don't worry if you don't understand all of the vocabulary in the report text—you'll be familiar with them by the end of the workshop!
+The goal of the workshop will be to produce a short report with 4 sections (described below in the side notes). Don't worry if you don't understand all of the vocabulary in the report text—you'll be familiar with them by the end of the workshop!
 
-> In this report, we compare first and second formant averages of five vowels from a participant NS with formant averages reported for Australian-English speakers in @cox2006acoustic.`r side_note("Describe the aim of your analysis.")`
-> We recorded five words in the /hVd/ context (*heed, hard, horde, who'd, hair'd*) using the built-in microphone on a 2016 Macbook Pro and in a relatively quiet meeting room at the Australian National University.`r side_note("Describe items recorded and recording environment.")`
+> In this report, we compare first and second formant averages of five vowels reported for Australian-English speakers in @cox2006acoustic with averages collected from a participant NS, a 28-year-old male Burmese-English bilingual.`r side_note("Describe the aim of your analysis and participant information.")`
+> We recorded five words in the /hVd/ context (*heed, hard, horde, who'd, hair'd*) using the built-in microphone on a 2016 Macbook Pro in a relatively quiet meeting room at the Australian National University.`r side_note("Describe items recorded and recording environment.")`
 
 > The vowels were annotated in the Praat Editor Window with only the spectrogram visible (pitch, intensity, and formant contours were turned off), and using the default spectrogram settings (View range: 0-5000 Hz, Window length: 0.005, Dynamic range: 70 dB).`r side_note("Describe annotation environment and annotation criteria.")`
 > As illustrated in the figure below, the starts of vowels were placed at the beginning of low frequency components (indicating the end of the voiceless fricative /h/), and the ends of vowels were placed at the termination of high frequency components (signalling the start of the stop closure /d/).
@@ -76,13 +75,7 @@ The goal of the workshop will be to produce a short report with 5 sections (desc
 <img src="media/annotation.png">
 </figure>
 
-> The annotation and formant data were extracted from Praat as CSV files and imported into a Google Sheets document as individual sheets named `annotations` and `formants`, respectively. For each row in the `annotations` sheet, average first and second formants were calculated using the `QUERY()` function.`r side_note("Describe data extraction and analysis method.")`
-
-<figure style="width:1000px">
-<img src="media/google-sheets.png">
-</figure>
-
-> `r margin_note("<b>Note</b>. *Always* give a worked example when describing your data analysis method!")`For example, as seen in figure above, the `F1_average` of 313.503 Hz for the vowel *heed* was calculated by querying the formants sheet for the average of values in column C, but only where the corresponding values in column A were greater than or equal to 0.427148 and less than or equal to 0.74984 (i.e. between `tmin` and `tmax` of *heed*): &#39;`=QUERY(formants!A:C, "select avg(C) where A >= 0.427148 and A <= 0.74984", 1)`&#39;.
+> The calculated formant averages were located on a F1-F2 plane along with average values for AusE male and female speakers from @cox2006acoustic. As observed in the figure below, the acoustic data indicated that NS's <em>heed</em> vowel was produced in a location effectively identical to the AusE Male average, while their <em>who'd</em> was relatively more backed than both the AusE female and male averages.`r side_note("Produce vowel plot, and make some observations.")`
 
 ```{r ns-vowels, echo=FALSE, fig.width=10, fig.height=8}
 cox2006means %>%
@@ -104,8 +97,6 @@ cox2006means %>%
     ylab("First formant average") +
     ggtitle("A comparison of vowel formants from 5 /hVd/ words")
 ```
-
-> The calculated F1 and F2 averages were located on a scatterplot along with average values for AusE male and female speakers from @cox2006acoustic. As observed in the figure above, the acoustic data indicated that NS's <em>heed</em> vowel was produced in a location effectively identical to the AusE Male average, while their <em>who'd</em> was relatively more backed than both the AusE female and male averages.`r side_note("Produce vowel plot, and make some observations.")`
 
 # Some background
 
@@ -138,19 +129,25 @@ Before we define what a spectrogram is, let's have a look at the Swiss Alps! The
 <img src="media/alps-sep.png">
 </figure>
 
-One way that we can we can incorporate altitude information into a map is to use a color gradient to indicate the metres above sea level. For example, we can see a small patch of white in the circle below, indicating the group of peaks above 3000 m.
+One way that we can incorporate altitude information into a map is to use a color gradient to indicate the metres above sea level. For example, we can see a small patch of white in the circle below, indicating the group of mountain peaks well above 3000 m.
 
 <figure style="width:800px">
 <img src="media/alps-topo.png">
 </figure>
 
-Similarly, we can indicate how much sound energy there is at a point in time using a grayscale gradient (darker = more energy, lighter = less energy). Just as a terrain map indicates how altitude varies by latitude and longitude, a spectrogram indicates how sound energy varies by frequency (e.g. 0 - 5000 Hz) and time (e.g. 0.2323 - 0.8181 s):
+Now, let's start by looking at two spectral slices, graphs indicating how much sound energy was detected (y-axis) for various frequencies (x-axis) at some given point in time:
 
-<figure style="width:700px">
+<figure style="width:600px">
+<img src="media/spec-slices.png">
+</figure>
+
+Notice above how Slice B has a bigger bump at the start, compared to Slice A? In other words, there's more acoustic energy at the lower frequencies in Slice B than in Slice A.
+We see this in the spectrogram as the dark band at the bottom of Slice B, and the relative lightness at the bottom of Slice A. So, just as a terrain map indicates how altitude varies by latitude and longitude, a spectrogram indicates how sound energy varies by frequency and time.`r margin_note('<br ><br ><br ><br ><img src="media/alps-topo.png">')`
+
+<figure style="width:600px">
 <img src="media/spec-sep.png">
 </figure>
 
-Notice above how Slice B has a bigger bump at the start, compared to Slice A? In other words, there's more acoustic energy at the lower frequencies in Slice B than in Slice A. We see this in the spectrogram as the dark band at the bottom of Slice B, and the relative lightness at the bottom of Slice A.
 
 # Exercises
 
@@ -164,8 +161,9 @@ Notice above how Slice B has a bigger bump at the start, compared to Slice A? In
     - Who'd
 
 2. Open up Praat, and from the top left menu item '`New`', click `Record mono Sound...` which will open the `SoundRecorder` in a separate window.
-3. Click `Record` to begin recording your vowels and `Stop` to finish; give a second or so before and after your word list in order to make sure you capture all the words.
-    a. Press `Play` to playback the most recent recording, or `Record` again to overwrite it.
+3. Click `Record` to begin recording your vowels and `Stop` to finish
+    - Pause for a bit between each word, and also give a second or so before and after your word list in order to make sure you capture all the words.
+    - Press `Play` to playback the most recent recording, or `Record` again to overwrite it.
 4. When you're happy with the recording, give the sound file a name (e.g. `my_vowels`) in the `Name` field in the bottom right corner of the `SoundRecorder` window, and then press `Save to list & Close`. You will see your recording (e.g. '`1. Sound my_vowels`') in the list of `Objects`.
 
 ## Annotating your vowels
@@ -180,12 +178,25 @@ Notice above how Slice B has a bigger bump at the start, compared to Slice A? In
     - Cmd + 1: Add interval on tier 1
     - Cmd + A: Show all
     
-    ![](media/annotation.gif)
+![](media/annotation.gif)
 
+## Data extraction
 
-## Extracting data into Google Sheets
+We're going to do this step twice. Once manually, and then once semi-automatically with Google Sheets.
 
-Todo...
+### Manually from the Praat Editor window
+
+1. If your formant contours are turned off, click the `Formant` menu then `Show formants`
+2. Select a vowel interval you have previously annotated, then click the `Formant` menu and then `Get first formant`. The `Praat Info` window will then appear with the mean first formant of within interval, note the value down somewhere (in a TextEditor, or on a piece of paper).
+
+![](media/get-first-formant.gif)
+
+### Extracting data using Google Sheets (if we have time)
+
+...To finish
+1. Export TextGrid data as `annotations.csv` and Formant data as `formants.csv`
+
+![](media/export-csvs.gif)
 
 ## Plotting your vowels
 
@@ -236,9 +247,17 @@ cox2006means %>%
 
 <!-- Extra non-content things //-->
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style type="text/css">
 html { margin-top: 150px; }
-body { background: white }
+body { background: white; padding-left:5%; width:95% }
+
+ol, ul { width: inherit } /* Remove defined width for lists within lists */
+
+@media only screen and (min-width: 700px) {
+    div > ul, div > ol { width: 45% } /* Re-add width for top-level lists */
+}
 
 a.no-underline {
     border: 0;
