@@ -226,7 +226,7 @@ We're going to do this step twice. Once manually, and then once semi-automatical
 
 2. Import `annotations.csv` and `formants.csv` into Google Sheets, ticking the option of `Replace current sheet` for the first one, and then `Inset new sheet(s)` for the second one.`r side_note("If you'd prefer to do these next steps in R, here's the code: [https://git.io/vbfQ2](https://git.io/vbfQ2).")`
 
-<a class="no-underline" target="_blank" href="http://g.recordit.co/euy7g7MxHl.gif">`r margin_note("Click the animated image to view the video which you can play/pause to follow it at your own pace.")`
+<a class="no-underline" target="_blank" href="http://recordit.co/euy7g7MxHl.gif">`r margin_note("Click the animated image to view the video which you can play/pause to follow it at your own pace.")`
 ![](media/import-google.gif)
 </a>
 
