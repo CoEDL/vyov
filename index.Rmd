@@ -182,6 +182,17 @@ We see this in the spectrogram as the dark band at the bottom of Slice B, and th
 ![](media/annotation.gif)
 </a>
 
+### Reporting annotation criteria
+
+1. Bring an instance of a vowel interval you have annotated into view then in the `Praat Picture` window, make a selection (big blue rectangle) where you want to draw the picture.
+2. Use `Spectrum -> Draw visible spectrogram...` to draw the spectrogram, and `File -> Draw visible TextGrid...` to draw the annotation data
+    - Note the option `Garnish` adds text such as axis labels, so it's best to garnish only one of your layers (usually the last)
+3. To save the picture, click `File -> Save as 300-dpi PNG file...`
+
+<a class="no-underline" target="_blank" href="http://recordit.co/5t8XIH3ANI">`r margin_note("Click the animated image to view the video which you can play/pause to follow it at your own pace.")`
+![](media/coding-scheme.gif)
+</a>
+
 ## Data extraction
 
 We're going to do this step twice. Once manually, and then once semi-automatically with Google Sheets.`r side_note("If you're really keen and are familiar with R, you can also do this step in R!")` By the end of this stage, however you do it, you should have a table as the one shown below. Go to the [plot interface](#section-plotting-your-vowels) to make an F1-F2 plot with these values.
