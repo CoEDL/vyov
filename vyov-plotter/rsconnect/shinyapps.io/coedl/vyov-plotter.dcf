@@ -1,0 +1,10 @@
+name: vyov-plotter
+title:
+username:
+account: coedl
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 241988
+bundleId: 1105659
+url: https://coedl.shinyapps.io/vyov-plotter/
+when: 1512017093.8632

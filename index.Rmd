@@ -1,5 +1,4 @@
 ---
-runtime: shiny
 title: "VYOV: Visualise your own vowels <br><h1>A short introduction to Praat for beginners</h1>"
 author: 'Nay San <p style="font-style:normal"><i class="fa fa-envelope-o" aria-hidden="true"></i> <nay.san@anu.edu.au><br><i class="fa fa-globe" aria-hidden="true"></i> <https://resunay.com></p>'
 output:
@@ -8,7 +7,7 @@ output:
         number_sections: true
         toc_depth: 2
 bibliography: refs.bib
-link-citations: yes
+link-citations: true
 ---
 
 ```{r setup, include=FALSE}
@@ -102,11 +101,11 @@ cox2006means %>%
 
 ## Vocal tract configuration and formant variation
 
-All the theory you need for this workshop can be found in an excerpt from Joe Wolfe's excellent video "Resonances & Formants" (1m17s to 2m32s):
+All the theory you need for this workshop can be found in an excerpt from Joe Wolfe's excellent video ["Resonances & Formants"](https://vimeo.com/user39455028/resonanceandformants#t=77s) (1m17s to 2m32s):
 
-<a class="no-underline" href="https://vimeo.com/user39455028/resonanceandformants#t=77s" target="_blank">
-<img src="media/wolfe-vowels.png">
-</a>
+<video width="700px" controls>
+<source src="media/wolfe-vowels.mp4" type="video/mp4">
+</video>
 
 I provide here a transcript of the excerpt (emphasis mine):
 
@@ -123,13 +122,13 @@ If I open my mouth more, the tract is a bit more like a cone than a cylinder, so
 
 ## What is a spectrogram anyway?
 
-Before we define what a spectrogram is, let's have a look at the Swiss Alps! The figure below shows, separately, the height of various mountain peaks (e.g. Eigner: 3970 m) and their geographical location on Google Maps.
+Before we define what a spectrogram is, let's have a look at the Swiss Alps! The figure below shows, separately, the height of various mountain peaks (e.g. Eigner: 3970 m) and their geographical location on Google Maps.`r margin_note('Sources: MySwitzerland.com <a href="https://www.myswitzerland.com/en-au/grindelwald.html" target="_blank">Grindelwald Skimap</a> and Google Maps on <a href="https://www.google.com.au/maps/@46.5776344,7.9966164,12z" target="_blank">Eiger, Switzerland</a>')`
 
 <figure style="width:900px">
 <img src="media/alps-sep.png">
 </figure>
 
-One way that we can incorporate altitude information into a map is to use a color gradient to indicate the metres above sea level. For example, we can see a small patch of white in the circle below, indicating the group of mountain peaks well above 3000 m.
+One way that we can incorporate altitude information into a map is to use a color gradient to indicate the metres above sea level. For example, we can see a small patch of white in the circle below, indicating the group of mountain peaks well above 3000 m.`r margin_note('Map source: <a href="https://commons.wikimedia.org/wiki/File:Schweiz_topo.png" target="_blank">Wikimedia Commons</a>')`
 
 <figure style="width:800px">
 <img src="media/alps-topo.png">
@@ -195,7 +194,7 @@ We see this in the spectrogram as the dark band at the bottom of Slice B, and th
 
 ## Data extraction
 
-We're going to do this step twice. Once manually, and then once semi-automatically with Google Sheets.`r side_note("If you're really keen and are familiar with R, you can also do this step in R!")` By the end of this stage, however you do it, you should have a table as the one shown below. Go to the [plot interface](#section-plotting-your-vowels) to make an F1-F2 plot with these values.
+We're going to do this step twice. Once manually, and then once semi-automatically with Google Sheets.`r side_note("If you're really keen and are familiar with R, you can also do this step in R!")` By the end of this stage, however you do it, you should have a table as the one shown below. Go to the [plot interface](#section-plotting-your-vowels) to make an F1-F2 plot with these values.`r margin_note('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Note there are many ways of measuring formant values other than averaging over an interval, but for introductory purposes we\'ll stick with the average for this tutorial.')`
 
 <figure style="width:500px">
 |Vowel  | F1_average| F2_average|
@@ -246,52 +245,15 @@ We're going to do this step twice. Once manually, and then once semi-automatical
 
 ## Plotting your vowels
 
-Enter in the mean F1 and F2 values you have extracted to plot them against the average F1 and F2 values of AusE male and female speakers.
+<iframe id="vowel_plotter" src="https://coedl.shinyapps.io/vyov-plotter/" style="width:90%;height:1000px;border:1px solid #f0f0f0"></iframe>
 
-```{r vowel plot app, echo=FALSE}
-inputPanel(
-    textInput("group_label", "Initials", value = "NS"),
-    
-    numericInput("heed_f1", "Heed, mean F1", 200),
-    numericInput("heed_f2", "Heed, mean F2", 2500),
-    
-    numericInput("hard_f1", "Hard, mean F1", 700),
-    numericInput("hard_f2", "Hard, mean F2", 1200),
-    
-    numericInput("horde_f1", "Horde, mean F1", 400),
-    numericInput("horde_f2", "Horde, mean F2", 800),
-    
-    numericInput("whod_f1", "Who'd, mean F1", 300),
-    numericInput("whod_f2", "Who'd, mean F2", 1600),
-    
-    numericInput("haird_f1", "Hair'd, mean F1", 400),
-    numericInput("haird_f2", "Hair'd, mean F2", 1900)
-)
+# Useful links
 
-renderPlot({
-    
-cox2006means %>%
-    rbind(data.frame(
-        stringsAsFactors = FALSE,
-        Group       = input$group_label,
-        Vowel      = c("heed", "hard", "horde", "who'd", "hair'd"),
-        F1_average = c(input$heed_f1, input$hard_f1, input$horde_f1, input$whod_f1, input$haird_f1),
-        F2_average = c(input$heed_f2, input$hard_f2, input$horde_f2, input$whod_f2, input$haird_f2)
-    )) %>% 
-    ggplot(aes(x = F2_average, y = F1_average)) +
-    geom_text(aes(label = Vowel, color = Group), size = 8, show.legend = FALSE) +
-    geom_point(aes(color = Group)) +
-    scale_x_reverse() +
-    scale_y_reverse() +
-    theme_bw(base_size = 20) +
-    xlab("Second formant average") +
-    ylab("First formant average") +
-    ggtitle("A comparison of vowel formants from 5 /hVd/ words")
-    
-}, height = 700, width = 800)
-```
+- Praat Intro: [http://www.fon.hum.uva.nl/praat/manual/Intro.html](http://www.fon.hum.uva.nl/praat/manual/Intro.html). Note this tutorial is also available from within Praat (`Help -> Praat Intro`)
 
-# Bibliography
+- Will Styler's very comprehensive and regularly updated guidebook *Using Praat for Linguistic Research* [http://savethevowels.org/praat/](http://savethevowels.org/praat/)
+
+- Sidney Wood's *Praat for Beginners* [https://swphonetics.com/praat/introduction/](https://swphonetics.com/praat/introduction/)
 
 <!-- Extra non-content things //-->
 
@@ -317,11 +279,7 @@ a.no-underline {
     font-family: sans serif;
 }
 
-/* I'm hijacking Markdown's **X** -> <strong>X</strong> conversion to write IPA */
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
-strong { font-family: 'Noto Sans', sans-serif; font-weight: normal }
-strong::before { content: '[' }
-strong::after  { content: ']' }
+}
 
 /* Copied from http://tholman.com/github-corners/ */
 .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
